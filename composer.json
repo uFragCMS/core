@@ -1,0 +1,28 @@
+{
+    "name": "ufragcms/core",
+    "description": "uFragCMS, easy php cms",
+    "type": "project",
+    "license": "GNU GPL",
+    "autoload": {
+        "psr-4": {
+            "Ufragcms\\Core\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "BloberSh",
+            "email": "ufrag@hiddenblob.com"
+        }
+    ],
+    "require": {
+        "ablaze/php-discord-webhook": "^1.0",
+        "symfony/http-client": "^6.2",
+        "nyholm/psr7": "^1.5",
+        "jolicode/slack-php-api": "^4.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
