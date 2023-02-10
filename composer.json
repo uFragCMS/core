@@ -1,0 +1,18 @@
+{
+    "name": "ufragcms/core",
+    "description": "uFragCMS, easy php cms",
+    "type": "project",
+    "license": "GNU GPL",
+    "autoload": {
+        "psr-4": {
+            "Ufragcms\\Core\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "BloberSh",
+            "email": "ufrag@hiddenblob.com"
+        }
+    ],
+    "require": {}
+}

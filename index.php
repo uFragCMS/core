@@ -4,6 +4,8 @@
  * @author: Michaël BILCOT <michael.bilcot@neofr.ag>
  */
 
+ require 'vendor/autoload.php';
+
 define('UFRAG_MEMORY',  memory_get_usage());
 define('UFRAG_TIME',    microtime(TRUE));
 const UFRAG_CMS = __DIR__;
