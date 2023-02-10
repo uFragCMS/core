@@ -2,12 +2,7 @@
     "name": "ufragcms/core",
     "description": "uFragCMS, easy php cms",
     "type": "project",
-    "license": "GNU GPL",
-    "autoload": {
-        "psr-4": {
-            "Ufragcms\\Core\\": "src/"
-        }
-    },
+    "license": "GPL-3.0-only",
     "authors": [
         {
             "name": "BloberSh",
