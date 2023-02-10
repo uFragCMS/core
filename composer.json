@@ -3,6 +3,7 @@
     "description": "uFragCMS, easy php cms",
     "type": "project",
     "license": "GPL-3.0-only",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "BloberSh",
