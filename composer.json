@@ -14,5 +14,15 @@
             "email": "ufrag@hiddenblob.com"
         }
     ],
-    "require": {}
+    "require": {
+        "ablaze/php-discord-webhook": "^1.0",
+        "symfony/http-client": "^6.2",
+        "nyholm/psr7": "^1.5",
+        "jolicode/slack-php-api": "^4.5"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
 }
