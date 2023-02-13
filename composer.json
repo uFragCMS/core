@@ -3,7 +3,7 @@
     "description": "uFragCMS, easy php cms",
     "type": "project",
     "license": "GPL-3.0-only",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "BloberSh",
@@ -14,7 +14,10 @@
         "ablaze/php-discord-webhook": "^1.0",
         "symfony/http-client": "^6.2",
         "nyholm/psr7": "^1.5",
-        "jolicode/slack-php-api": "^4.5"
+        "jolicode/slack-php-api": "^4.5",
+        "scssphp/scssphp": "^1.11",
+        "phpmailer/phpmailer": "^6.7",
+        "socialconnect/auth": "^3.3"
     },
     "config": {
         "allow-plugins": {

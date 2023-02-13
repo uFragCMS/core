@@ -154,9 +154,6 @@ class Email extends Library
 			return FALSE;
 		}
 
-		require_once 'lib/phpmailer/PHPMailer.php';
-		require_once 'lib/phpmailer/Exception.php';
-
 		$debug = [];
 
 		$PHPMailer = new PHPMailer;
