@@ -1,3 +1,11 @@
 <?php
 
-$crypt['key'] = '_RpvbI(pnX>VhoqZ3=q-AN{~@T!uqgjBXNozX^1%},=2GbWywx@_f%%$-!dgp:v=>.HstUC3(!;kIp{6E7Z3[mHD/*g-?Y(bh:5hv(&,V87L+@$j)GhYvKKH/Ugq#YW.{u';
+$chars         = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9), str_split('~!@#$%^&*()-_=+[]{};:,.<>/?'));
+$crypt['key'] = '';
+
+foreach (range(1, 130) as $i)
+{
+	$crypt['key'] .= $chars[array_rand($chars)];
+}
+
+file_put_contents('./config/crypt.php', utf8_string("<?php\n\n\$crypt['key'] = '".$crypt['key']."';\n"));
