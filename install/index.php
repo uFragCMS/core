@@ -94,14 +94,14 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
 <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible">
 <meta name="theme-color" content="#2b373a">
-<title><?php echo lang('Installation').' @NeoFrag '.NEOFRAG_VERSION ?></title>
+<title><?php echo lang('Installation').' @µFrag '.UFRAG_VERSION ?></title>
 <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="install/install.css" type="text/css">
 <link rel="stylesheet" href="css/icons/fontawesome.min.css" type="text/css">
 </head>
 <body>
-	<a class="logo" href="https://neofr.ag" target="_blank"><img src="install/logo.png" alt="" /></a>
+	<a class="logo" href="https://ufragcms.hiddenblob.com" target="_blank"><img src="install/logo.png" alt="" /></a>
 	<div class="container">
 		<?php if (!file_exists('install/db.txt')): ?>
 			<section class="step check-init">
@@ -110,7 +110,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 						<div class="heading">
 							<a href="#" class="btn btn-action btn-success invisible float-right" data-action="next-step"><?php echo lang('Continuer') ?> <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 							<h1><?php echo lang('Installation') ?></h1>
-							<p class="lead"><?php echo lang('Bienvenue ! Laissez-vous guider pour installer votre nouveau site avec NeoFrag') ?></p>
+							<p class="lead"><?php echo lang('Bienvenue ! Laissez-vous guider pour installer votre nouveau site avec µFrag') ?></p>
 						</div>
 					</div>
 				</div>
@@ -167,7 +167,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="dbname" name="dbname" required>
 									<small class="form-text text-muted">
-										<?php echo lang('Nom de la base de données sur laquelle vous souhaitez installer NeoFrag') ?>
+										<?php echo lang('Nom de la base de données sur laquelle vous souhaitez installer µFrag') ?>
 									</small>
 								</div>
 							</div>
@@ -270,7 +270,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<a href="https://neofr.ag" class="btn btn-action btn-link" target="_blank"><?php echo lang('Site µFrag') ?><i class="fa fa-angle-right"></i></a>
+						<a href="https://ufragcms.hiddenblob.com" class="btn btn-action btn-link" target="_blank"><?php echo lang('Site µFrag') ?><i class="fa fa-angle-right"></i></a>
 						<a href="admin/settings" class="btn btn-action btn-info btn-finished"><?php echo lang('Configurer mon site') ?><i class="fa fa-angle-right"></i></a>
 					</div>
 				</div>

@@ -17,18 +17,18 @@
 	$is_list = in_array($settings['social_display'], ['ul-inline', 'ul']);
 
 	foreach ([
-			'nf_social_facebook'   => ['Facebook',   'fa-facebook-f',    '#3B5998'],
-			'nf_social_twitter'    => ['Twitter',    'fa-twitter',       '#55ACEE'],
-			'nf_social_google'     => ['Google+',    'fa-google-plus-g', '#dd4b39'],
-			'nf_social_steam'      => ['Steam',      'fa-steam',         '#00adee'],
-			'nf_social_twitch'     => ['Twitch',     'fa-twitch',        '#772ce8'],
-			'nf_social_dribble'    => ['Dribbble',   'fa-dribbble',      '#ea4c89'],
-			'nf_social_behance'    => ['Behance',    'fa-behance',       '#2196f3'],
-			'nf_social_deviantart' => ['DeviantArt', 'fa-deviantart',    '#00e59b'],
-			'nf_social_flickr'     => ['Flickr',     'fa-flickr',        '#f40083'],
-			'nf_social_github'     => ['GitHub',     'fa-github',        '#24292e'],
-			'nf_social_instagram'  => ['Instagram',  'fa-instagram',     '#125688'],
-			'nf_social_youtube'    => ['Youtube',    'fa-youtube',       '#bb0000']
+			'social_facebook'   => ['Facebook',   'fa-facebook-f',    '#3B5998'],
+			'social_twitter'    => ['Twitter',    'fa-twitter',       '#55ACEE'],
+			'social_google'     => ['Google+',    'fa-google-plus-g', '#dd4b39'],
+			'social_steam'      => ['Steam',      'fa-steam',         '#00adee'],
+			'social_twitch'     => ['Twitch',     'fa-twitch',        '#772ce8'],
+			'social_dribble'    => ['Dribbble',   'fa-dribbble',      '#ea4c89'],
+			'social_behance'    => ['Behance',    'fa-behance',       '#2196f3'],
+			'social_deviantart' => ['DeviantArt', 'fa-deviantart',    '#00e59b'],
+			'social_flickr'     => ['Flickr',     'fa-flickr',        '#f40083'],
+			'social_github'     => ['GitHub',     'fa-github',        '#24292e'],
+			'social_instagram'  => ['Instagram',  'fa-instagram',     '#125688'],
+			'social_youtube'    => ['Youtube',    'fa-youtube',       '#bb0000']
 		] as $var => list($title, $icon, $bgcolor))
 	{
 		if ($this->config->$var)

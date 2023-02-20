@@ -36,10 +36,10 @@ class Output extends Core
 			$this->_title = function(){
 				if (($this->url->segments[0] != 'index' || $this->url->subdomain) && $this->module() && ($title = $this->data->get('module', 'title')))
 				{
-					return $title.' | '.$this->config->nf_name;
+					return $title.' | '.$this->config->name;
 				}
 
-				return $this->config->nf_description.' | '.$this->config->nf_name;
+				return $this->config->description.' | '.$this->config->name;
 			};
 		}
 
@@ -100,7 +100,7 @@ class Output extends Core
 				if ($segments[0] == 'index')
 				{
 					array_shift($segments);
-					$segments = array_merge(explode('/', $this->config->nf_default_page), $segments);
+					$segments = array_merge(explode('/', $this->config->default_page), $segments);
 				}
 				else
 				{
@@ -122,7 +122,7 @@ class Output extends Core
 
 				if (!$this->url->admin && $this->url->ajax && $segments[0] == 'theme')
 				{
-					$module = $this->_theme = parent::theme($this->config->nf_default_theme);
+					$module = $this->_theme = parent::theme($this->config->default_theme);
 					array_shift($segments);
 				}
 				else
@@ -271,7 +271,7 @@ class Output extends Core
 		}
 		else
 		{
-			$this->_theme = parent::theme($this->url->admin && $this->access->admin() && (!$this->_module || $this->_module->is_authorized()) ? $this->_admin_theme : $this->config->nf_default_theme);
+			$this->_theme = parent::theme($this->url->admin && $this->access->admin() && (!$this->_module || $this->_module->is_authorized()) ? $this->_admin_theme : $this->config->default_theme);
 
 			$css     = $this->data->get('css');
 			$js      = $this->data->get('js');
@@ -401,7 +401,7 @@ class Output extends Core
 
 		if ($dispositions === NULL)
 		{
-			$this->db	->from('nf_dispositions')
+			$this->db	->from('dispositions')
 						->where('theme', $this->_theme->info()->name)
 						->order_by('page DESC');
 
@@ -482,7 +482,7 @@ class Output extends Core
 		$this->_data = $this->array;
 
 		$theme = $this->_theme;
-		$this->_theme = parent::theme($this->config->nf_default_theme);
+		$this->_theme = parent::theme($this->config->default_theme);
 		$this->_theme->__init();
 
 		$callback();

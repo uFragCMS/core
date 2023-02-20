@@ -17,7 +17,7 @@ class Language_Es extends Language
 			'icon'    => '🇪🇸',
 			'version' => '1.0',
 			'depends' => [
-				'ufrag' => 'Alpha 0.2'
+				'ufrag' => '0.0.1'
 			]
 		];
 	}

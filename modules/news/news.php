@@ -22,7 +22,7 @@ class News extends Module
 			'admin'       => TRUE,
 			'version'     => '1.0',
 			'depends'     => [
-				'ufrag' => 'Alpha 0.2'
+				'ufrag' => '0.0.1'
 			],
 			'routes'      => [
 				//Index
@@ -108,7 +108,7 @@ class News extends Module
 	public function comments($news_id)
 	{
 		$news = $this->db	->select('title')
-							->from('nf_news_lang')
+							->from('news_lang')
 							->where('news_id', $news_id)
 							->where('lang', $this->config->lang->info()->name)
 							->row();

@@ -10,7 +10,7 @@ function statistics($name, $value = NULL, $callback = NULL)
 
 	if ($statistics === NULL)
 	{
-		foreach (uFrag()->db->from('nf_statistics')->get() as $stat)
+		foreach (uFrag()->db->from('statistics')->get() as $stat)
 		{
 			$statistics[$stat['name']] = $stat['value'];
 		}
@@ -23,14 +23,14 @@ function statistics($name, $value = NULL, $callback = NULL)
 			if ($callback === NULL || call_user_func($callback, $value, $statistics[$name]))
 			{
 				uFrag()->db	->where('name', $name)
-										->update('nf_statistics', [
+										->update('statistics', [
 											'value' => $value
 										]);
 			}
 		}
 		else
 		{
-			uFrag()->db->insert('nf_statistics', [
+			uFrag()->db->insert('statistics', [
 				'name'  => $name,
 				'value' => $value
 			]);

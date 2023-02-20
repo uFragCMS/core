@@ -72,7 +72,7 @@ class Widget extends Displayable
 
 	public function __toString()
 	{
-		$widget_data = uFrag()->db->from('nf_widgets')
+		$widget_data = uFrag()->db->from('widgets')
 									->where('widget_id', $this->_widget)
 									->row();
 

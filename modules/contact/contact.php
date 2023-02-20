@@ -21,7 +21,7 @@ class Contact extends Module
 			'license'     => 'LGPLv3 <https://neofr.ag/license>',
 			'version'     => '1.0',
 			'depends'     => [
-				'ufrag' => 'Alpha 0.2'
+				'ufrag' => '0.0.1'
 			]
 		];
 	}

@@ -69,9 +69,9 @@ class Admin_Ajax extends Controller_Module
 										$version = $addon->info()->version;
 										$depends = $addon->info()->depends;
 
-										$nf_version = $depends['ufrag'];
+										$version = $depends['ufrag'];
 
-										if (!empty($version) && !empty($nf_version))
+										if (!empty($version) && !empty($version))
 										{
 											$type = strtolower($match2[1]);
 
@@ -95,7 +95,7 @@ class Admin_Ajax extends Controller_Module
 												}
 											}
 
-											if (($cmp = version_compare($nf_version, version_format(UFRAG_VERSION))) !== 1)
+											if (($cmp = version_compare($version, version_format(UFRAG_VERSION))) !== 1)
 											{
 												file_put_contents($file, $content);
 												dir_copy($dir, $type.'s/'.$name);
@@ -126,7 +126,7 @@ class Admin_Ajax extends Controller_Module
 											}
 
 											return [
-												'danger' => 'Le '.$type.' '.($addon ? $addon->info()->title : $name).' nécessite la version '.$nf_version.' de uFrag, veuillez mettre jour votre site'
+												'danger' => 'Le '.$type.' '.($addon ? $addon->info()->title : $name).' nécessite la version '.$version.' de uFrag, veuillez mettre jour votre site'
 											];
 										}
 

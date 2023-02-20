@@ -460,7 +460,7 @@ abstract class Model2 extends uFrag implements Loadable
 		{
 			$this->__tracking = uFrag()	->db()
 											->select('COALESCE(model_id, 0)', 'date')
-											->from('nf_tracking')
+											->from('tracking')
 											->where('user_id',  uFrag()->user->id)
 											->where('model',    $this->__table)
 											->where('model_id', $this->id, 'OR', 'model_id', NULL)
@@ -723,7 +723,7 @@ abstract class Model2 extends uFrag implements Loadable
 
 	protected function _table()
 	{
-		return 'nf_'.$this->__table;
+		return ''.$this->__table;
 	}
 
 	protected function _data($values, $id)

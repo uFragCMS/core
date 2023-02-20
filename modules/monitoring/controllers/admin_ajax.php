@@ -17,12 +17,12 @@ class Admin_Ajax extends Controller_Module
 	{
 		if ($refresh || $this->module->need_checking())
 		{
-			$this->config('nf_monitoring_last_check', time());
+			$this->config('monitoring_last_check', time());
 
 			//https://www.php.net/supported-versions.php
-			$current             = 7.4;
-			$security_fixes_only = 7.2;
-			$last_end_of_life    = 7.1;
+			$current             = 8.1;
+			$security_fixes_only = 8.0;
+			$last_end_of_life    = 7.4;
 
 			if (version_compare(PHP_VERSION, $last_end_of_life, '<='))
 			{
@@ -46,7 +46,7 @@ class Admin_Ajax extends Controller_Module
 
 			foreach (['version', 'checksum'] as $file)
 			{
-				if ($$file = $this	->network('https://neofr.ag/'.$file.'.json?v='.version_format(UFRAG_VERSION).($this->config->nf_update_beta ? '&beta=1' : ''))
+				if ($$file = $this	->network('https://vc.ufragcms.hiddenblob.com/'.$file.'.json?v='.version_format(UFRAG_VERSION).($this->config->update_beta ? '&beta=1' : ''))
 									->type('text')
 									->get())
 				{
@@ -193,11 +193,11 @@ class Admin_Ajax extends Controller_Module
 								$node[] = '';
 							}
 
-							list($nf_md5, $md5) = $node;
+							list($md5, $md5) = $node;
 
 							$tags = [];
 
-							if ($nf_md5 === '')
+							if ($md5 === '')
 							{
 								if (!preg_match('#^(?:modules|themes|widgets)/#', $dir))
 								{
@@ -210,7 +210,7 @@ class Admin_Ajax extends Controller_Module
 								$tags[] = 'Manquant';
 								$this->_notify('Le fichier <code>'.$dir.$name.'</code> est manquant', 'error');
 							}
-							else if ($nf_md5 != $md5)
+							else if ($md5 != $md5)
 							{
 								$tags[] = 'Corrompu';
 								$this->_notify('Le fichier <code>'.$dir.$name.'</code> est corrompu', 'warning');
@@ -331,27 +331,26 @@ class Admin_Ajax extends Controller_Module
 
 				dir_create('cache/monitoring');
 
-				$this	->network('https://ufrag.download/?v='.version_format($version->version))
-						->stream($file = 'cache/monitoring/ufrag.zip', function($size, $total){
+				$this	->network('https://dl.ufragcms.hiddenblob.com/?v='.version_format($version->version))
+						->stream($file = 'cache/monitoring/ufragcms.zip', function($size, $total){
 							$this->_flush(2, $size / $total * 100);
 						});
 
 				$scan_zip = function($callback) use ($file){
-					if ($zip = zip_open($file))
-					{
-						while ($zip_entry = zip_read($zip))
-						{
-							$entry_name = zip_entry_name($zip_entry);
+					$zip = new ZipArchive;
+					if ($zip->open($file) === TRUE) {
+						for ($i = 0; $i < $zip->numFiles; $i++) {
+							$entry_name = $zip->getNameIndex($i);
 
-							if (preg_match('#/|^index.php$#', $entry_name) && (!preg_match('#^(config|install)/#', $entry_name) || !file_exists($entry_name)) && zip_entry_open($zip, $zip_entry, 'r'))
-							{
-								$callback($zip_entry, $entry_name);
+							if (preg_match('#/|^index.php$#', $entry_name) && (!preg_match('#^(config|install)/#', $entry_name) || !$zip->locateName($entry_name))) {
+								$zip_entry = $zip->getStream($entry_name);
+								if ($zip_entry !== false) {
+									$callback($zip_entry, $entry_name);
+									fclose($zip_entry);
+								}
 							}
-
-							zip_entry_close($zip_entry);
 						}
-
-						zip_close($zip);
+						$zip->close();
 					}
 				};
 
@@ -383,9 +382,9 @@ class Admin_Ajax extends Controller_Module
 						unlink($file);
 					}
 
-					if (!$this->config->nf_version)
+					if (!$this->config->version)
 					{
-						$this->config('nf_version', version_format(UFRAG_VERSION));
+						$this->config('version', version_format(UFRAG_VERSION));
 					}
 
 					if ($patch = @uFrag()->install($patch_name = preg_replace('/[^a-z0-9]/i', '_', $version->version)))
@@ -397,9 +396,9 @@ class Admin_Ajax extends Controller_Module
 
 					$this->module('tools')->api()->scss();
 
-					$this	->config('nf_update_callback',       $patch_name)
-							->config('nf_version',               version_format($version->version))
-							->config('nf_monitoring_last_check', 0);
+					$this	->config('update_callback',       $patch_name)
+							->config('version',               version_format($version->version))
+							->config('monitoring_last_check', 0);
 				}
 			});
 		}
