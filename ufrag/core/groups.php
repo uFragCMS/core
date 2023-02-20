@@ -14,7 +14,7 @@ class Groups extends Core
 
 	public function __construct()
 	{
-		$users = $this->db->select('id', 'admin')->from('user')->where('deleted', FALSE)->get();
+		$users = $this->db->select('id', 'admin')->from('users')->where('deleted', FALSE)->get();
 
 		$this->_groups = [
 			'admins' => [

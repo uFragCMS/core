@@ -122,7 +122,7 @@ class Access extends Core
 	{
 		$count = array_fill(0, 2, 0);
 
-		foreach ($this->db->select('id')->from('user')->where('deleted', FALSE)->get() as $user_id)
+		foreach ($this->db->select('id')->from('users')->where('deleted', FALSE)->get() as $user_id)
 		{
 			$access = $this($module, $action, $id, NULL, $user_id);
 			$count[(int)$access]++;

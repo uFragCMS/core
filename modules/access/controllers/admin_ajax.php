@@ -143,7 +143,7 @@ class Admin_Ajax extends Controller_Module
 						'td'      => FALSE
 					]
 				])
-				->data($this->db->select('id as user_id', 'username')->from('user')->where('deleted', FALSE)->get())
+				->data($this->db->select('id as user_id', 'username')->from('users')->where('deleted', FALSE)->get())
 				->preprocessing(function($row) use ($module_name, $action, $id){
 					$row['active'] = uFrag()->access($module_name, $action, $id, NULL, $row['user_id']);
 					return $row;
