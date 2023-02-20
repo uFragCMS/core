@@ -35,7 +35,7 @@ class Session extends Core
 
 				$this->db	->where('remember', FALSE)
 							->where('last_activity <', $expiration_date->sql())
-							->delete('session');
+							->delete('sessions');
 			}
 
 			$cookie_name = $this->config->cookie_name;

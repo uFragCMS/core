@@ -213,7 +213,7 @@ class Index extends Controller_Module
 		if ($this->form()->is_valid())
 		{
 			$this->db	->where('id', $session_id)
-						->delete('session');
+						->delete('sessions');
 
 			return 'OK';
 		}
