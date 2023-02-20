@@ -204,7 +204,7 @@ class Admin extends Controller_Module
 	{
 		return $this->title($this->lang('Sessions'))
 					->icon('fas fa-globe')
-					->table2('session', $sessions, 'Aucune session active')
+					->table2('sessions', $sessions, 'Aucune session active')
 					->panel()
 					->title('Liste des sessions actives', 'fas fa-bars');
 	}
@@ -218,7 +218,7 @@ class Admin extends Controller_Module
 		if ($this->form()->is_valid())
 		{
 			$this->db	->where('id', $session_id)
-						->delete('session');
+						->delete('sessions');
 
 			return 'OK';
 		}

@@ -156,7 +156,7 @@ class User extends Model2
 
 	public function sessions()
 	{
-		return uFrag()->collection('session')
+		return uFrag()->collection('sessions')
 						->where('_.user_id', $this->id);
 	}
 

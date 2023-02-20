@@ -24,7 +24,7 @@ class Session extends Core
 
 		if ($this->url->cli || is_crawler() || (isset($config['avoid']) && is_a($config['avoid'], 'closure') && $config['avoid']()))
 		{
-			$this->_session = $this->model2('session');
+			$this->_session = $this->model2('sessions');
 			$this->_data    = $this->array;
 		}
 		else
@@ -35,7 +35,7 @@ class Session extends Core
 
 				$this->db	->where('remember', FALSE)
 							->where('last_activity <', $expiration_date->sql())
-							->delete('session');
+							->delete('sessions');
 			}
 
 			$cookie_name = $this->config->cookie_name;
@@ -74,7 +74,7 @@ class Session extends Core
 			{
 				$set_cookie();
 
-				$this->set('session', [
+				$this->set('sessions', [
 					'date'       => uFrag()->date(),
 					'ip_address' => $ip_address = isset($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP']                     : $_SERVER['REMOTE_ADDR'],
 					'host_name'  => utf8_string(gethostbyaddr($ip_address)),
@@ -97,8 +97,8 @@ class Session extends Core
 			$user->set('last_activity_date', uFrag()->date())->update();
 		}
 
-		$this	->trigger('session_init', $this)
-				->debug->bar('session', function(){
+		$this	->trigger('sessions_init', $this)
+				->debug->bar('sessions', function(){
 					return $this->_data->__toArray();
 				});
 	}
@@ -136,7 +136,7 @@ class Session extends Core
 						->set_if($remember !== NULL, 'remember', $remember)
 						->update();
 
-		$this	->model2('session_history')
+		$this	->model2('sessions_history')
 				->set('user',       $user)
 				->set('ip_address', $ip_address = isset($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP'] : $_SERVER['REMOTE_ADDR'])
 				->set('host_name',  utf8_string(gethostbyaddr($ip_address)))
@@ -156,7 +156,7 @@ class Session extends Core
 
 	public function current_sessions()
 	{
-		return uFrag()->collection('session')
+		return uFrag()->collection('sessions')
 						->where('_.last_activity > DATE_SUB(NOW(), INTERVAL 5 MINUTE)');
 	}
 }

@@ -138,7 +138,7 @@ class Index extends Controller_Module
 														$this->user->delete();
 													}
 
-													uFrag()->collection('session')->where('user_id', $this->user->id)->update([
+													uFrag()->collection('sessions')->where('user_id', $this->user->id)->update([
 														'user_id' => NULL
 													]);
 
@@ -213,7 +213,7 @@ class Index extends Controller_Module
 		if ($this->form()->is_valid())
 		{
 			$this->db	->where('id', $session_id)
-						->delete('session');
+						->delete('sessions');
 
 			return 'OK';
 		}
