@@ -1,7 +1,7 @@
 <?php
 
-define('NEOFRAG_DEBUG_BAR',  FALSE);
-define('NEOFRAG_SAFE_MODE',  FALSE);
-define('NEOFRAG_LOGS',       FALSE);
-define('NEOFRAG_LOGS_DB',    FALSE);
-define('NEOFRAG_LOGS_I18N',  FALSE);
+define('UFRAG_DEBUG_BAR',  FALSE);
+define('UFRAG_SAFE_MODE',  FALSE);
+define('UFRAG_LOGS',       FALSE);
+define('UFRAG_LOGS_DB',    FALSE);
+define('UFRAG_LOGS_I18N',  FALSE);

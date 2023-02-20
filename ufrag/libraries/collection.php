@@ -141,12 +141,12 @@ class Collection extends Library
 
 	public function update($data)
 	{
-		return $this->_db->clone()->from('')->update('nf_'.$this->_model->__table.' `_`', $data);
+		return $this->_db->clone()->from('')->update(''.$this->_model->__table.' `_`', $data);
 	}
 
 	public function delete()
 	{
-		return $this->_db->clone()->from('')->delete('_', 'nf_'.$this->_model->__table.' `_`');
+		return $this->_db->clone()->from('')->delete('_', ''.$this->_model->__table.' `_`');
 	}
 
 	public function count()
@@ -172,7 +172,7 @@ class Collection extends Library
 			}
 		}
 
-		if ($count && !$total_unread && uFrag()->db()->from('nf_tracking')->where('user_id', uFrag()->user->id)->where('model', $this->_model->__table)->count() > 1)
+		if ($count && !$total_unread && uFrag()->db()->from('tracking')->where('user_id', uFrag()->user->id)->where('model', $this->_model->__table)->count() > 1)
 		{
 			uFrag()	->collection('tracking')
 						->where('user_id', uFrag()->user->id)

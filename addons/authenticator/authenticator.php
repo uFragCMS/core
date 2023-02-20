@@ -17,7 +17,7 @@ class Authenticator extends Addon
 			'icon'    => 'fas fa-sign-in-alt',
 			'version' => '1.0',
 			'depends' => [
-				'ufrag' => 'Alpha 0.2'
+				'ufrag' => '0.0.1'
 			]
 		];
 	}

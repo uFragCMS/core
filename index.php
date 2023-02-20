@@ -9,7 +9,7 @@
 define('UFRAG_MEMORY',  memory_get_usage());
 define('UFRAG_TIME',    microtime(TRUE));
 const UFRAG_CMS = __DIR__;
-const UFRAG_VERSION = 'Alpha 0.2.3';
+const UFRAG_VERSION = '0.0.1';
 
 error_reporting(E_ALL);
 

@@ -41,7 +41,7 @@ class Email extends Library
 		else
 		{
 			$this->_footer = function(){
-				return $this->config->nf_description.' | <a href="'.url('//').'">'.$this->config->nf_name.'</a>';
+				return $this->config->description.' | <a href="'.url('//').'">'.$this->config->name.'</a>';
 			};
 		}
 	}
@@ -55,7 +55,7 @@ class Email extends Library
 	{
 		if ($key === NULL)
 		{
-			$key = unique_id($this->db()->select('key')->from('nf_emailing_email_recipient')->get());
+			$key = unique_id($this->db()->select('key')->from('emailing_email_recipient')->get());
 		}
 
 		$this->_key = $key;
@@ -193,8 +193,8 @@ class Email extends Library
 			call_user_func_array([$PHPMailer, 'AddReplyTo'], $this->_reply_to);
 		}
 
-		$PHPMailer->setFrom(strtolower($this->_from && array_key_exists(0, $this->_from) ? $this->_from[0] : $this->config->nf_contact),
-							utf8_html_entity_decode($this->_from && array_key_exists(1, $this->_from) ? $this->_from[1] : $this->config->nf_name),
+		$PHPMailer->setFrom(strtolower($this->_from && array_key_exists(0, $this->_from) ? $this->_from[0] : $this->config->contact),
+							utf8_html_entity_decode($this->_from && array_key_exists(1, $this->_from) ? $this->_from[1] : $this->config->name),
 							!ini_get('sendmail_from')
 		);
 
