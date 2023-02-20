@@ -141,7 +141,7 @@ class Messages extends Model
 	public function insert_message($recipients, $title, $message, $auto = FALSE)
 	{
 		$recipients = array_diff(array_unique(array_map(function($a){
-			return (int)$this->db->select('id')->from('user')->where('deleted', FALSE)->where('username', $a)->row();
+			return (int)$this->db->select('id')->from('users')->where('deleted', FALSE)->where('username', $a)->row();
 		}, explode(';', $recipients)), SORT_NUMERIC), [$user_id = $this->user->id]);
 
 		if ($recipients)
