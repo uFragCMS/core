@@ -45,7 +45,7 @@ class Session extends Core
 				$cookie_name .= '_https';
 			}
 
-			$this->_session = $this->model2('session', isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : NULL);
+			$this->_session = $this->model2('sessions', isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : NULL);
 
 			$this->_data = $this->_session->data->__extends($this);
 

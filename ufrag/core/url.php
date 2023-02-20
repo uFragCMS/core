@@ -289,7 +289,7 @@ class Url extends Core
 
 			$url = array_pop($history) ?: NULL;
 
-			$this->session->set('session', 'history', $history);
+			$this->session->set('sessions', 'history', $history);
 
 			return $url;
 		}
