@@ -175,7 +175,7 @@ function strtolink($string, $is_html = FALSE)
 
 		if ($users === NULL)
 		{
-			foreach (uFrag()->db->select('id', 'username')->from('users')->where('deleted', FALSE)->get() as $user)
+			foreach (uFrag()->db->select('id', 'username')->from('user')->where('deleted', FALSE)->get() as $user)
 			{
 				$users[$user['id']] = $user['username'];
 			}

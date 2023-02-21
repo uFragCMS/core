@@ -16,7 +16,7 @@ class Statistics extends Controller_Module
 			'registrations' => [
 				'title' => 'Inscriptions',
 				'data'  => function(){
-					$this->db	->from('users')
+					$this->db	->from('user')
 								->where('deleted', FALSE);
 
 					return 'registration_date';

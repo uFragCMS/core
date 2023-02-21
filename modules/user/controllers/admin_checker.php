@@ -63,14 +63,14 @@ class Admin_Checker extends Module_Checker
 
 	public function _sessions($page = '')
 	{
-		return [uFrag()->collection('sessions')->order_by('_.last_activity DESC')->paginate($page)];
+		return [uFrag()->collection('session')->order_by('_.last_activity DESC')->paginate($page)];
 	}
 
 	public function _sessions_delete($session_id)
 	{
 		$this->ajax();
 
-		if (!$this->db->from('sessions')->where('id', $session_id)->empty())
+		if (!$this->db->from('session')->where('id', $session_id)->empty())
 		{
 			$this->ajax();
 

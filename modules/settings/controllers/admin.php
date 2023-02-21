@@ -149,7 +149,7 @@ class Admin extends Controller_Module
 				->icon('fas fa-sign-in-alt fa-rotate-90');
 
 		$users = $this->db	->select('id as user_id', 'username')
-							->from('users')
+							->from('user')
 							->where('deleted', FALSE)
 							->order_by('username')
 							->get();

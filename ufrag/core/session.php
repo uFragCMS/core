@@ -35,7 +35,7 @@ class Session extends Core
 
 				$this->db	->where('remember', FALSE)
 							->where('last_activity <', $expiration_date->sql())
-							->delete('sessions');
+							->delete('session');
 			}
 
 			$cookie_name = $this->config->cookie_name;
@@ -45,7 +45,7 @@ class Session extends Core
 				$cookie_name .= '_https';
 			}
 
-			$this->_session = $this->model2('sessions', isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : NULL);
+			$this->_session = $this->model2('session', isset($_COOKIE[$cookie_name]) ? $_COOKIE[$cookie_name] : NULL);
 
 			$this->_data = $this->_session->data->__extends($this);
 
@@ -74,7 +74,7 @@ class Session extends Core
 			{
 				$set_cookie();
 
-				$this->set('sessions', [
+				$this->set('session', [
 					'date'       => uFrag()->date(),
 					'ip_address' => $ip_address = isset($_SERVER['HTTP_X_REAL_IP']) ? $_SERVER['HTTP_X_REAL_IP']                     : $_SERVER['REMOTE_ADDR'],
 					'host_name'  => utf8_string(gethostbyaddr($ip_address)),
@@ -83,7 +83,7 @@ class Session extends Core
 				]);
 			}
 
-			statistics('sessions_max_simultaneous', $this->db->select('COUNT(DISTINCT IFNULL(user_id, id))')->from('sessions')->where('last_activity > DATE_SUB(NOW(), INTERVAL 5 MINUTE)')->row(), function($a, $b){ return $a > $b; });
+			statistics('sessions_max_simultaneous', $this->db->select('COUNT(DISTINCT IFNULL(user_id, id))')->from('session')->where('last_activity > DATE_SUB(NOW(), INTERVAL 5 MINUTE)')->row(), function($a, $b){ return $a > $b; });
 
 			$this->on('output_loaded', function(){
 				$this->_session->set('data', $this->_data)->update();
@@ -156,7 +156,7 @@ class Session extends Core
 
 	public function current_sessions()
 	{
-		return uFrag()->collection('sessions')
+		return uFrag()->collection('session')
 						->where('_.last_activity > DATE_SUB(NOW(), INTERVAL 5 MINUTE)');
 	}
 }

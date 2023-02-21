@@ -40,7 +40,7 @@ class Admin extends Controller_Module
 					'class'   => 'text-right'
 				]
 			])
-			->data($this->db->from('users')->where('deleted', FALSE)->order_by('id DESC')->limit(5)->get())
+			->data($this->db->from('user')->where('deleted', FALSE)->order_by('id DESC')->limit(5)->get())
 			->display();
 
 		return $this->array(
@@ -55,7 +55,7 @@ class Admin extends Controller_Module
 				),
 				$this->col(
 					$this	->panel_box()
-							->heading($this->lang('Membre|Membres', $count = $this->db->from('users')->where('deleted', FALSE)->count()), 'fas fa-users', 'admin/user')
+							->heading($this->lang('Membre|Membres', $count = $this->db->from('user')->where('deleted', FALSE)->count()), 'fas fa-users', 'admin/user')
 							->body($count)
 							->color('bg-green')
 							->size('col-4 col-lg-2')
@@ -100,7 +100,7 @@ class Admin extends Controller_Module
 							$this	->panel()
 									->heading($this->lang('Utilisateurs connectés'), 'fas fa-globe')
 									->body($this->view('users_online', [
-										'currently' => $this->db->from('sessions')->where('last_activity > DATE_SUB(NOW(), INTERVAL 5 MINUTE)')->count(),
+										'currently' => $this->db->from('session')->where('last_activity > DATE_SUB(NOW(), INTERVAL 5 MINUTE)')->count(),
 										'max'       => statistics('sessions_max_simultaneous')
 									]))
 									->footer('<a href="'.url('admin/user/sessions').'">'.$this->lang('Voir toutes les sessions actives').'</a>'),

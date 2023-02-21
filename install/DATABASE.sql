@@ -414,8 +414,8 @@ CREATE TABLE `news_lang` (
   CONSTRAINT `news_lang_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `news` (`news_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password` varchar(34) NOT NULL,
@@ -435,8 +435,8 @@ CREATE TABLE `users` (
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`language`) REFERENCES `addons` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `users_auth`;
-CREATE TABLE `users_auth` (
+DROP TABLE IF EXISTS `user_auth`;
+CREATE TABLE `user_auth` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `authenticator_id` int(11) unsigned NOT NULL,
@@ -446,12 +446,12 @@ CREATE TABLE `users_auth` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`,`authenticator_id`,`key`),
   KEY `authenticator_id` (`authenticator_id`),
-  CONSTRAINT `user_auth_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_auth_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_auth_ibfk_2` FOREIGN KEY (`authenticator_id`) REFERENCES `addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `users_profile`;
-CREATE TABLE `users_profile` (
+DROP TABLE IF EXISTS `user_profile`;
+CREATE TABLE `user_profile` (
   `id` int(11) unsigned NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
@@ -472,17 +472,17 @@ CREATE TABLE `users_profile` (
   KEY `avatar` (`avatar`),
   KEY `cover` (`cover`),
   CONSTRAINT `user_profile_ibfk_2` FOREIGN KEY (`avatar`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  CONSTRAINT `user_profile_ibfk_3` FOREIGN KEY (`id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_profile_ibfk_3` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_profile_ibfk_4` FOREIGN KEY (`cover`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `users_token`;
-CREATE TABLE `users_token` (
+DROP TABLE IF EXISTS `user_token`;
+CREATE TABLE `user_token` (
   `id` varchar(32) NOT NULL,
   `user_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `user_token_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `user_token_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `users_groups`;
@@ -491,7 +491,7 @@ CREATE TABLE `users_groups` (
   `group_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`user_id`,`group_id`),
   KEY `group_id` (`group_id`),
-  CONSTRAINT `users_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `users_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `users_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`group_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -516,7 +516,7 @@ CREATE TABLE `users_messages_recipients` (
   `deleted` enum('0','1') NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`,`message_id`),
   KEY `message_id` (`message_id`),
-  CONSTRAINT `users_messages_recipients_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `users_messages_recipients_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `users_messages_recipients_ibfk_2` FOREIGN KEY (`message_id`) REFERENCES `users_messages` (`message_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -531,7 +531,7 @@ CREATE TABLE `users_messages_replies` (
   KEY `message_id` (`message_id`,`user_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `users_messages_replies_ibfk_1` FOREIGN KEY (`message_id`) REFERENCES `users_messages` (`message_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `users_messages_replies_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `users_messages_replies_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `widgets`;

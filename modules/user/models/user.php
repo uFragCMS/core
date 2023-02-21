@@ -59,7 +59,7 @@ class User extends Model2
 			else if ($this->id)
 			{
 				$this->online = $this->db	->select('MAX(last_activity) > DATE_SUB(NOW(), INTERVAL 5 MINUTE)')
-											->from('sessions')
+											->from('session')
 											->where('user_id', $this->id)
 											->row();
 			}
@@ -87,7 +87,7 @@ class User extends Model2
 
 		if (!$username)
 		{
-			$username = $this->db->select('username')->from('users')->where('id', $user_id)->row();
+			$username = $this->db->select('username')->from('user')->where('id', $user_id)->row();
 		}
 
 		if (!$user_id || !$username)
@@ -156,7 +156,7 @@ class User extends Model2
 
 	public function sessions()
 	{
-		return uFrag()->collection('sessions')
+		return uFrag()->collection('session')
 						->where('_.user_id', $this->id);
 	}
 
