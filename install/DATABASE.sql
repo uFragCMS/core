@@ -38,7 +38,7 @@ CREATE TABLE `addon` (
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `addons` (`id`, `type_id`, `name`, `data`) VALUES
+INSERT INTO `addon` (`id`, `type_id`, `name`, `data`) VALUES
 (1, NULL, 'authenticator', NULL),
 (2, 1, 'access', 'a:1:{s:7:\"enabled\";b:1;}'),
 (3, 1, 'addons', 'a:1:{s:7:\"enabled\";b:1;}'),
@@ -447,7 +447,7 @@ CREATE TABLE `user_auth` (
   UNIQUE KEY `user_id` (`user_id`,`authenticator_id`,`key`),
   KEY `authenticator_id` (`authenticator_id`),
   CONSTRAINT `user_auth_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_auth_ibfk_2` FOREIGN KEY (`authenticator_id`) REFERENCES `addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `user_auth_ibfk_2` FOREIGN KEY (`authenticator_id`) REFERENCES `addon` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `user_profile`;
