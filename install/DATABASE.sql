@@ -25,8 +25,8 @@ CREATE TABLE `access_details` (
   CONSTRAINT `access_details_ibfk_1` FOREIGN KEY (`access_id`) REFERENCES `access` (`access_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `addons`;
-CREATE TABLE `addons` (
+DROP TABLE IF EXISTS `addon`;
+CREATE TABLE `addon` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type_id` int(11) unsigned DEFAULT NULL,
   `name` varchar(100) NOT NULL,
@@ -178,7 +178,7 @@ CREATE TABLE `i18n` (
   KEY `model` (`model`),
   KEY `model_id` (`model_id`),
   KEY `name` (`name`),
-  CONSTRAINT `i18n_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `i18n_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `addon` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `log_db`;
@@ -243,7 +243,7 @@ CREATE TABLE `session` (
   CONSTRAINT `session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `sessions_history`;
+DROP TABLE IF EXISTS `session_history`;
 CREATE TABLE `session_history` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
@@ -255,7 +255,7 @@ CREATE TABLE `session_history` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `sessions_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `session_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `settings`;
@@ -367,7 +367,7 @@ CREATE TABLE `news` (
   KEY `category_id` (`category_id`),
   KEY `user_id` (`user_id`),
   KEY `image_id` (`image_id`),
-  CONSTRAINT `news_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `news_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `news_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `files` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `news_ibfk_4` FOREIGN KEY (`category_id`) REFERENCES `news_categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -432,7 +432,7 @@ CREATE TABLE `user` (
   KEY `email` (`email`),
   KEY `language` (`language`),
   KEY `deleted` (`deleted`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`language`) REFERENCES `addons` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`language`) REFERENCES `addon` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `user_auth`;

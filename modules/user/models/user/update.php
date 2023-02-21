@@ -124,7 +124,7 @@ class Update extends \UF\uFrag\Actions\Update
 											->title('Photo de couverture', 'far fa-image')
 								)
 								->append(
-									$this	->table2('sessions', $user->sessions(), 'Aucune session active')
+									$this	->table2('session', $user->sessions(), 'Aucune session active')
 											->panel()
 											->title($this->lang('Sessions actives'), 'fas fa-globe')
 								)

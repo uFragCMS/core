@@ -202,9 +202,9 @@ class Admin extends Controller_Module
 
 	public function _sessions($sessions)
 	{
-		return $this->title($this->lang('Sessions'))
+		return $this->title($this->lang('session'))
 					->icon('fas fa-globe')
-					->table2('sessions', $sessions, 'Aucune session active')
+					->table2('session', $sessions, 'Aucune session active')
 					->panel()
 					->title('Liste des sessions actives', 'fas fa-bars');
 	}

@@ -24,7 +24,7 @@ class Session extends Core
 
 		if ($this->url->cli || is_crawler() || (isset($config['avoid']) && is_a($config['avoid'], 'closure') && $config['avoid']()))
 		{
-			$this->_session = $this->model2('sessions');
+			$this->_session = $this->model2('session');
 			$this->_data    = $this->array;
 		}
 		else
@@ -98,7 +98,7 @@ class Session extends Core
 		}
 
 		$this	->trigger('sessions_init', $this)
-				->debug->bar('sessions', function(){
+				->debug->bar('session', function(){
 					return $this->_data->__toArray();
 				});
 	}

@@ -152,7 +152,7 @@ class Admin_Ajax extends Controller_Module
 				->sort_by(2, SORT_ASC)
 				->sort_by(1, SORT_ASC);
 
-		return $this->view('users', [
+		return $this->view('user', [
 			'title' => $title,
 			'icon'  => $icon,
 			'users' => $this->table()->display()
